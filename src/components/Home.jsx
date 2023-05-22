@@ -15,14 +15,17 @@ export default function Dashboard(){
 
     const addNotes = (ev) => {
         ev.preventDefault();
-        const id = notes.length+1;
-        setNotes([
-            ...notes,
-            {
-                ...note,
-                id: id
-            }
-        ])
+        if(note.body !== "" || note.title !== ""){
+            const id = notes.length+1;
+            setNotes([
+                ...notes,
+                {
+                    ...note,
+                    id: id
+                }
+            ])
+        }
+        
     }
 
     return (
