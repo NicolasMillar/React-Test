@@ -16,19 +16,19 @@ export default function Form({notes, setNotes}) {
                 }
             ])
         }
-        
+        setNote(initialNotes);
     }
 
     return (
         <form onSubmit={(ev) => addNotes(ev)}>
             <label htmlFor="title">
                 Titulo
-                <input id='title' type="text" onChange={(ev) => setNote({...note, title: ev.target.value})} />
+                <input id='title' value={note.title} type="text" onChange={(ev) => setNote({...note, title: ev.target.value})} />
             </label>
             <br />
             <label htmlFor="body">
                 Cuerpo
-                <input id='body' type="text" onChange={(ev) => setNote({...note, body: ev.target.value})} />
+                <input id='body' value={note.body} type="text" onChange={(ev) => setNote({...note, body: ev.target.value})} />
             </label>
             <br />
             <button>Agregar</button>

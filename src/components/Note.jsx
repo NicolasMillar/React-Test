@@ -1,9 +1,12 @@
 import React from 'react'
 
-export default function Note({note}) {
+export default function Note({note, deleteNote}) {
   return (
     <div>
-        <li>Id: {note.id} Titulo: {note.title} Cuerpo: {note.body}</li>
+        <li style={{marginBottom: '.6em'}}>
+            Id: {note.id} Titulo: {note.title} Cuerpo: {note.body}
+            <button onClick={() => deleteNote(note.id)}>X</button>
+        </li>
     </div>
   )
 }

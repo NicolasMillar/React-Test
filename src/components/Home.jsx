@@ -17,7 +17,7 @@ export default function Dashboard(){
     return (
         <>
             <h1>Listado de notas</h1>
-            <Notes notes={notes} />
+            <Notes notes={notes} setNotes={setNotes}/>
             <Form notes={notes} setNotes={setNotes}/>
         </>
         
