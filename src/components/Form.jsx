@@ -6,7 +6,7 @@ export default function Form({notes, setNotes}) {
 
     const addNotes = (ev) => {
         ev.preventDefault();
-        if(note.body !== "" || note.title !== ""){
+        if(note.body.trim() !== "" || note.title.trim() !== ""){
             const id = notes.length+1;
             setNotes([
                 ...notes,
