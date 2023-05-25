@@ -20,18 +20,22 @@ export default function Form({notes, setNotes}) {
     }
 
     return (
-        <form onSubmit={(ev) => addNotes(ev)}>
-            <label htmlFor="title">
-                Titulo
-                <input id='title' value={note.title} type="text" onChange={(ev) => setNote({...note, title: ev.target.value})} />
-            </label>
-            <br />
-            <label htmlFor="body">
-                Cuerpo
-                <input id='body' value={note.body} type="text" onChange={(ev) => setNote({...note, body: ev.target.value})} />
-            </label>
-            <br />
-            <button>Agregar</button>
-        </form>
+        <div className="has-background-success-light">
+            <form onSubmit={(ev) => addNotes(ev)}>
+                <div className="field">
+                    <label htmlFor="">Titulo</label>
+                    <div className="control">
+                        <input id='title' className='input' value={note.title} type="text" onChange={(ev) => setNote({...note, title: ev.target.value})} />
+                    </div>
+                </div>
+                <div className="field">
+                    <label htmlFor="">Cuerpo</label>
+                    <div className="control">
+                        <textarea className='textarea' id='body' value={note.body} type="text" onChange={(ev) => setNote({...note, body: ev.target.value})} ></textarea>
+                    </div>
+                </div>
+                <button className='button is-primary'>Agregar</button>
+            </form>
+        </div>
     )
 }
