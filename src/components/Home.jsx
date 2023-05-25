@@ -1,18 +1,19 @@
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import Form from './Form';
 import Notes from './Notes';
+import axios from 'axios';
 
 export default function Dashboard(){
 
-    const [notes, setNotes] = useState([
-        {id:1, title: 'nota 1', body:'prueba xD'},
-        {id:2, title: 'nota 2', body:'prueba xD'},
-        {id:3, title: 'nota 3', body:'prueba xD'},
-        {id:4, title: 'nota 4', body:'prueba xD'},
-        {id:5, title: 'nota 5', body:'prueba xD'},
-    ]);
+    const [notes, setNotes] = useState([]);
 
-    
+    useEffect( () => {
+        axios.get('https://jsonplaceholder.typicode.com/posts').then((payload) => {
+            console.log(payload);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }, []);
 
     return (
         <div className="container">
