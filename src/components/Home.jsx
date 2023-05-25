@@ -15,11 +15,11 @@ export default function Dashboard(){
     
 
     return (
-        <>
-            <h1>Listado de notas</h1>
+        <div className="container">
+            <h1 className="title has-text-centered mt-5">Listado de notas</h1>
             <Notes notes={notes} setNotes={setNotes}/>
             <Form notes={notes} setNotes={setNotes}/>
-        </>
+        </div>
         
     )
 }

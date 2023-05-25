@@ -2,7 +2,8 @@ import React from 'react'
 import Note from './Note'
 
 export default function Notes({notes, setNotes}) {
-    const deleteNote = (id) => {
+    const deleteNote = (id, e) => {
+        e.preventDefault();
         const newNotes = notes.filter(note => id !== note.id);
         setNotes(newNotes);
     }
@@ -14,12 +15,12 @@ export default function Notes({notes, setNotes}) {
     }
 
     return (
-        <ul>
+        <div className='columns is-multiline' >
             {
                 notes.map(note => {
                     return <Note key={note.id} updateNote={updateNote} note={note} deleteNote={deleteNote} />
                 })
             } 
-        </ul>
+        </div>
     )
 }
