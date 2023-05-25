@@ -28,18 +28,22 @@ export default function Note({note, deleteNote, updateNote}) {
                     <p className="card-content">
                         {
                             modeEdit ?
-                            <label htmlFor="">
-                                Titulo
-                                <input type="text"  value={item.title} onChange={(ev) => setItem({...item, title: ev.target.value})}/>
-                            </label>
+                            <div className="field">
+                                <label htmlFor="">Titulo</label>
+                                <div className="control">
+                                    <input className='input' type="text"  value={item.title} onChange={(ev) => setItem({...item, title: ev.target.value})}/>
+                                </div>
+                            </div>
                             :<div>Titulo: {note.title}</div>
                         }
                         {
                             modeEdit ?
-                            <label htmlFor="">
-                                Cuerpo
-                                <input type="text" value={item.body} onChange={(ev) => setItem({...item, body: ev.target.value})} />
-                            </label>
+                            <div className="field">
+                                <label htmlFor="">Cuerpo</label>
+                                <div className="control">
+                                    <textarea className='textarea' type="text" value={item.body} onChange={(ev) => setItem({...item, body: ev.target.value})} ></textarea>
+                                </div>
+                            </div>
                             :<div>Cuerpo: {note.body}</div>
                         }
                     </p>
