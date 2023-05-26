@@ -25,7 +25,7 @@ export default function Note({note, deleteNote, updateNote}) {
                     </p>
                 </header>
                 <div className="card-content">
-                    <p className="card-content">
+                    <div className="card-content">
                         {
                             modeEdit ?
                             <div className="field">
@@ -46,7 +46,7 @@ export default function Note({note, deleteNote, updateNote}) {
                             </div>
                             :<div>Cuerpo: {note.body}</div>
                         }
-                    </p>
+                    </div>
                 </div>
                 <footer className="card-footer">
                     <a href={'/'} className="card-footer-item" onClick={(e) => toggle(e)}>{modeEdit ? 'Cancelar' :'Editar'}</a>
