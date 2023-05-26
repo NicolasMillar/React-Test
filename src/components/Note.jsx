@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Note({note, deleteNote, updateNote}) {
+export default function Note({note, deleteNote, updateNote, errors, setErrors}) {
     const [modeEdit, setModeEdit] = useState(false);
     const [item, setItem] = useState(note);
 
@@ -8,12 +8,21 @@ export default function Note({note, deleteNote, updateNote}) {
         e.preventDefault();
         setModeEdit(!modeEdit)
         setItem(note);
+        setErrors({
+            "title": "",
+            "body": ""
+        });
     }
 
-    const edit = (e) => {
-        updateNote(item);
+    const edit = async (e) => {
         e.preventDefault();
-        setModeEdit(false);
+        if( await updateNote(item)){
+            setModeEdit(false);
+            setErrors({
+                "title": "",
+                "body": ""
+            });
+        }
     }
 
     return (
@@ -33,6 +42,7 @@ export default function Note({note, deleteNote, updateNote}) {
                                 <div className="control">
                                     <input className='input' type="text"  value={item.title} onChange={(ev) => setItem({...item, title: ev.target.value})}/>
                                 </div>
+                                <span className="help is-danger">{errors.title}</span>
                             </div>
                             :<div>Titulo: {note.title}</div>
                         }
@@ -43,6 +53,7 @@ export default function Note({note, deleteNote, updateNote}) {
                                 <div className="control">
                                     <textarea className='textarea' type="text" value={item.body} onChange={(ev) => setItem({...item, body: ev.target.value})} ></textarea>
                                 </div>
+                                <span className="help is-danger">{errors.body}</span>
                             </div>
                             :<div>Cuerpo: {note.body}</div>
                         }
