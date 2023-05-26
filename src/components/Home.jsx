@@ -8,8 +8,8 @@ export default function Dashboard(){
     const [notes, setNotes] = useState([]);
 
     useEffect( () => {
-        axios.get('https://jsonplaceholder.typicode.com/posts').then((payload) => {
-            console.log(payload);
+        axios.get('http://localhost:8080/api/notes').then((payload) => {
+            setNotes(payload.data);
         }).catch((err) => {
             console.log(err);
         })
