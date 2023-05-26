@@ -1,5 +1,6 @@
-import React from 'react'
-import Note from './Note'
+import React from 'react';
+import Note from './Note';
+import axios from 'axios';
 
 export default function Notes({notes, setNotes}) {
     const deleteNote = (id, e) => {
@@ -9,9 +10,16 @@ export default function Notes({notes, setNotes}) {
     }
 
     const updateNote = (newNote) => {
-        setNotes(
-            notes.map(note => note.id === newNote.id ? newNote : note)
-        );
+        axios.put(`http://localhost:8080/api/notes/${newNote.id}`, newNote).then((payload) => {
+            let {id} = payload.data.data;
+            setNotes(
+                notes.map(note => note.id === id ? payload.data.data : note)
+            );
+        }).catch(errors => {
+
+        })
+
+        
     }
 
     return (

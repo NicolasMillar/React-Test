@@ -19,17 +19,6 @@ export default function Form({notes, setNotes}) {
         }).catch((errors) => {
             setErrors(errors.response.data.messages);
         });
-
-        /*if(note.body.trim() !== "" || note.title.trim() !== ""){
-            const id = notes.length+1;
-            setNotes([
-                ...notes,
-                {
-                    ...note,
-                    id: id
-                }
-            ])
-        }*/
         setNote(initialNotes);
     }
 
