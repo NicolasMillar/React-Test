@@ -4,6 +4,11 @@ import axios from 'axios';
 export default function Form({notes, setNotes}) {
     const initialNotes = {id: '', title: '', body:''}
     const [note, setNote] = useState(initialNotes);
+    const [errors, setErrors] = useState({
+        'body' : '',
+        'title': ''
+    });
+
 
     const addNotes = (ev) => {
         ev.preventDefault();
@@ -12,7 +17,7 @@ export default function Form({notes, setNotes}) {
             setNotes([...notes, payload.data.data]);
             
         }).catch((errors) => {
-
+            setErrors(errors.response.data.messages);
         });
 
         /*if(note.body.trim() !== "" || note.title.trim() !== ""){
@@ -36,12 +41,14 @@ export default function Form({notes, setNotes}) {
                     <div className="control">
                         <input id='title' className='input' value={note.title} type="text" onChange={(ev) => setNote({...note, title: ev.target.value})} />
                     </div>
+                    <span className="help is-danger">{errors.title}</span>
                 </div>
                 <div className="field">
                     <label htmlFor="">Cuerpo</label>
                     <div className="control">
                         <textarea className='textarea' id='body' value={note.body} type="text" onChange={(ev) => setNote({...note, body: ev.target.value})} ></textarea>
                     </div>
+                    <span className="help is-danger">{errors.body}</span>
                 </div>
                 <button className='button is-primary'>Agregar</button>
             </form>
