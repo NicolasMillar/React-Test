@@ -1,4 +1,5 @@
-import { React, useState } from 'react'
+import { React, useState } from 'react';
+import axios from 'axios';
 
 export default function Form({notes, setNotes}) {
     const initialNotes = {id: '', title: '', body:''}
@@ -6,7 +7,15 @@ export default function Form({notes, setNotes}) {
 
     const addNotes = (ev) => {
         ev.preventDefault();
-        if(note.body.trim() !== "" || note.title.trim() !== ""){
+
+        axios.post('http://localhost:8080/api/notes', note).then((payload) => {
+            setNotes([...notes, payload.data.data]);
+            
+        }).catch((errors) => {
+
+        });
+
+        /*if(note.body.trim() !== "" || note.title.trim() !== ""){
             const id = notes.length+1;
             setNotes([
                 ...notes,
@@ -15,7 +24,7 @@ export default function Form({notes, setNotes}) {
                     id: id
                 }
             ])
-        }
+        }*/
         setNote(initialNotes);
     }
 
