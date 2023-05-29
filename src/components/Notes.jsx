@@ -4,8 +4,8 @@ import axios from 'axios';
 
 export default function Notes({notes, setNotes}) {
     const [errors, setErrors] = useState({
-        'body' : '',
-        'title': ''
+        "title" : "",
+        "body" : ""
     });
 
     const deleteNote = (id, e) => {
@@ -20,11 +20,11 @@ export default function Notes({notes, setNotes}) {
             setNotes(
                 notes.map(note => note.id === id ? payload.data.data : note)
             );
-            return true
+            return true;
         }).catch(errors => {
-            setErrors(errors.response.data.message);
-            return false;
-        })
+            setErrors(errors.response.data.messages);
+            return false
+        });
         return response;
     }
 
@@ -32,7 +32,7 @@ export default function Notes({notes, setNotes}) {
         <div className='columns is-multiline' >
             {
                 notes.map(note => {
-                    return <Note key={note.id} errors={errors} setErrors={setErrors} updateNote={updateNote} note={note} deleteNote={deleteNote} />
+                    return <Note key={note.id} setErrors={setErrors} errors={errors} updateNote={updateNote} note={note} deleteNote={deleteNote} />
                 })
             } 
         </div>

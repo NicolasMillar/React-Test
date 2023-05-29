@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Note({note, deleteNote, updateNote, errors, setErrors}) {
+export default function Note({note, deleteNote, updateNote, setErrors, errors }) {
     const [modeEdit, setModeEdit] = useState(false);
     const [item, setItem] = useState(note);
 
@@ -9,8 +9,8 @@ export default function Note({note, deleteNote, updateNote, errors, setErrors}) 
         setModeEdit(!modeEdit)
         setItem(note);
         setErrors({
-            "title": "",
-            "body": ""
+            "title" : "",
+            "body" : ""
         });
     }
 
@@ -19,8 +19,8 @@ export default function Note({note, deleteNote, updateNote, errors, setErrors}) 
         if( await updateNote(item)){
             setModeEdit(false);
             setErrors({
-                "title": "",
-                "body": ""
+                "title" : "",
+                "body" : ""
             });
         }
     }
