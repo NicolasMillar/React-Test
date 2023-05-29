@@ -10,8 +10,13 @@ export default function Notes({notes, setNotes}) {
 
     const deleteNote = (id, e) => {
         e.preventDefault();
-        const newNotes = notes.filter(note => id !== note.id);
-        setNotes(newNotes);
+
+        axios.delete(`http://localhost:8080/api/notes/${id}`).then((payload) => {
+            alert(payload.data.message);
+            setNotes(notes.filter(note => id !== note.id));
+        }).catch(errors => {
+            alert(errors.response);
+        });
     }
 
     const updateNote = (newNote) => {
