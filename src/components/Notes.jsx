@@ -34,12 +34,14 @@ export default function Notes({notes, setNotes}) {
     }
 
     return (
-        <div className='columns is-multiline' >
-            {
-                notes.map(note => {
-                    return <Note key={note.id} setErrors={setErrors} errors={errors} updateNote={updateNote} note={note} deleteNote={deleteNote} />
-                })
-            } 
-        </div>
+        notes.length > 0 ?
+            <div className='columns is-multiline' >
+                {
+                    notes.map(note => {
+                        return <Note key={note.id} setErrors={setErrors} errors={errors} updateNote={updateNote} note={note} deleteNote={deleteNote} />
+                    })
+                } 
+            </div>
+        : <p className='has-text-centered subtitle'>No existen Notas</p>
     )
 }
